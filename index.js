@@ -11,7 +11,13 @@ const ffmpeg = require("fluent-ffmpeg");
 // We are using our packages here
 app.use(bodyParser.json()); // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
-app.use(cors());
+app.use(
+  cors({
+    origin: "*", // Allow all origins
+    methods: ["GET", "POST"], // Allow GET and POST methods
+    allowedHeaders: ["Content-Type"], // Allow Content-Type header
+  })
+);
 
 //Route that handles getting the download information
 app.post("/download", (req, res) => {
